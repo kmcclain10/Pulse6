@@ -277,16 +277,18 @@ const AdminSidebar = ({ activePage = "dashboard" }) => {
   );
 };
 
-// Dealer Sidebar Component (existing)
+// Dealer Sidebar Component (existing) - Mobile Optimized
 const DealerSidebar = ({ activePage = "inventory" }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const dealerMenuItems = [
     {
       name: 'Inventory',
       path: '/dealer-portal',
       icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M19 9l-1.26-3.78A2 2 0 0 0 15.84 4H8.16a2 2 0 0 0-1.9 1.22L5 9H3v11a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V9h-2zM7.5 17a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
         </svg>
       )
@@ -295,17 +297,8 @@ const DealerSidebar = ({ activePage = "inventory" }) => {
       name: 'Leads',
       path: '/dealer-leads',
       icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M16 4v4l-4-4-4 4V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2zm4 4v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h1v1c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6h1c1.1 0 2 .9 2 2z"/>
-        </svg>
-      )
-    },
-    {
-      name: 'Reports',
-      path: '/dealer-reports',
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm2.5 2.25l1.41-1.41L15.5 12.5 13 15l-3.5-3.5L4 17V5h16v12.25z"/>
         </svg>
       )
     },
@@ -313,7 +306,7 @@ const DealerSidebar = ({ activePage = "inventory" }) => {
       name: 'Desking Tool',
       path: '/dealer-tools',
       icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9v-2h2v2zm0-4H9v-2h2v2zm0-4H9V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
         </svg>
       )
@@ -322,75 +315,139 @@ const DealerSidebar = ({ activePage = "inventory" }) => {
       name: 'Credit Apps',
       path: '/credit-application',
       icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h8c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-        </svg>
-      )
-    },
-    {
-      name: 'Settings',
-      path: '/dealer-settings',
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
         </svg>
       )
     }
   ];
 
+  const isCurrentPath = (path) => location.pathname === path;
+
   return (
-    <div className="fixed left-0 top-0 h-full w-64 bg-gray-900 border-r border-gray-700 z-30">
-      <div className="p-6">
-        {/* Logo */}
-        <div className="mb-8">
-          <PulseLogo size="small" />
-        </div>
-
-        {/* Dealership Info */}
-        <div className="mb-8 p-4 bg-gray-800 rounded-lg">
-          <p className="text-yellow-400 font-bold text-sm">DEALERSHIP</p>
-          <p className="text-white font-medium">Sample Dealership</p>
-          <p className="text-gray-400 text-sm">Nashville, TN</p>
-        </div>
-
-        {/* Menu Items */}
-        <nav className="space-y-2">
-          {dealerMenuItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                activePage === item.name.toLowerCase().replace(' ', '-')
-                  ? 'bg-yellow-400 text-gray-900'
-                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-              }`}
+    <>
+      {/* Mobile Header */}
+      <div className="md:hidden fixed top-0 left-0 right-0 bg-gray-900 border-b border-gray-700 z-50">
+        <div className="flex items-center justify-between p-4">
+          <PulseLogo size="small" showText={false} />
+          <div className="flex items-center space-x-4">
+            <span className="text-white text-sm">Dealer</span>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white"
             >
-              {item.icon}
-              <span className="font-medium">{item.name}</span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* Bottom Actions */}
-        <div className="absolute bottom-6 left-6 right-6 space-y-2">
-          <Link
-            to="/"
-            className="flex items-center justify-center space-x-2 px-4 py-3 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition-colors"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-            </svg>
-            <span>Back to Site</span>
-          </Link>
-          <button className="flex items-center justify-center space-x-2 w-full px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5z"/>
-            </svg>
-            <span>Logout</span>
-          </button>
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsMobileMenuOpen(false)}></div>
+      )}
+
+      {/* Mobile Menu */}
+      <div className={`md:hidden fixed top-0 right-0 h-full w-80 bg-gray-900 border-l border-gray-700 transform transition-transform duration-300 ease-in-out z-50 ${
+        isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-8">
+            <PulseLogo size="small" />
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-gray-400 hover:text-white text-2xl"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="mb-8 p-4 bg-gray-800 rounded-lg">
+            <p className="text-yellow-400 font-bold text-sm">DEALERSHIP</p>
+            <p className="text-white font-medium">Sample Dealership</p>
+            <p className="text-gray-400 text-sm">Nashville, TN</p>
+          </div>
+
+          <nav className="space-y-2">
+            {dealerMenuItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => {
+                  navigate(item.path);
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-colors ${
+                  isCurrentPath(item.path)
+                    ? 'bg-yellow-400 text-gray-900'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`}
+              >
+                {item.icon}
+                <span className="font-medium">{item.name}</span>
+              </button>
+            ))}
+          </nav>
+
+          <div className="absolute bottom-6 left-6 right-6 space-y-2">
+            <Link
+              to="/"
+              className="flex items-center justify-center space-x-2 px-4 py-3 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+              <span>Back to Site</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Sidebar */}
+      <div className="hidden md:block fixed left-0 top-0 h-full w-64 bg-gray-900 border-r border-gray-700 z-30">
+        <div className="p-6">
+          <div className="mb-8">
+            <PulseLogo size="small" />
+          </div>
+
+          <div className="mb-8 p-4 bg-gray-800 rounded-lg">
+            <p className="text-yellow-400 font-bold text-sm">DEALERSHIP</p>
+            <p className="text-white font-medium">Sample Dealership</p>
+            <p className="text-gray-400 text-sm">Nashville, TN</p>
+          </div>
+
+          <nav className="space-y-2">
+            {dealerMenuItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                  isCurrentPath(item.path)
+                    ? 'bg-yellow-400 text-gray-900'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`}
+              >
+                {item.icon}
+                <span className="font-medium">{item.name}</span>
+              </Link>
+            ))}
+          </nav>
+
+          <div className="absolute bottom-6 left-6 right-6 space-y-2">
+            <Link
+              to="/"
+              className="flex items-center justify-center space-x-2 px-4 py-3 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+              <span>Back to Site</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
