@@ -1,0 +1,1 @@
+export default function DealerPortal() { return <div>Dealer Portal</div>; }

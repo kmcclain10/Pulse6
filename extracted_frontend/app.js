@@ -1,0 +1,1 @@
+console.log('Pulse Auto Market frontend loaded.');
