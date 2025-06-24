@@ -449,24 +449,24 @@ const DealerHeader = ({ activePage = "inventory" }) => {
   );
 };
 
-// Admin Header Component (for admin portal pages)
+// Admin Header Component (for admin portal pages) - Mobile Optimized
 const AdminHeader = ({ activePage = "dashboard" }) => {
   return (
-    <header className="bg-gray-900 border-b border-gray-700 ml-64">
-      <div className="px-6 py-4">
+    <header className="bg-gray-900 border-b border-gray-700 md:ml-64 pt-16 md:pt-0">
+      <div className="px-4 md:px-6 py-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-white capitalize">
+          <h1 className="text-xl md:text-2xl font-bold text-white capitalize">
             {activePage.replace('-', ' ')}
           </h1>
 
           {/* User Info */}
-          <div className="flex items-center space-x-4">
-            <div className="text-right">
+          <div className="flex items-center space-x-2 md:space-x-4">
+            <div className="text-right hidden md:block">
               <p className="text-white font-medium">Admin User</p>
               <p className="text-gray-400 text-sm">System Administrator</p>
             </div>
-            <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-              <span className="text-gray-900 font-bold">AD</span>
+            <div className="w-8 h-8 md:w-10 md:h-10 bg-yellow-400 rounded-full flex items-center justify-center">
+              <span className="text-gray-900 font-bold text-sm md:text-base">AD</span>
             </div>
           </div>
         </div>
