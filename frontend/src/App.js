@@ -795,7 +795,7 @@ function App() {
             <div className="min-h-screen bg-gray-900">
               <AdminSidebar activePage="dashboard" />
               <AdminHeader activePage="dashboard" />
-              <div className="ml-64">
+              <div className="md:ml-64 pt-16 md:pt-0">
                 <AdminDashboard />
               </div>
             </div>
@@ -804,26 +804,8 @@ function App() {
             <div className="min-h-screen bg-gray-900">
               <AdminSidebar activePage="dealer-crm" />
               <AdminHeader activePage="dealer crm" />
-              <div className="ml-64">
+              <div className="md:ml-64 pt-16 md:pt-0">
                 <DealerCRM />
-              </div>
-            </div>
-          } />
-          <Route path="/admin/subscriptions" element={
-            <div className="min-h-screen bg-gray-900">
-              <AdminSidebar activePage="subscriptions" />
-              <AdminHeader activePage="subscriptions" />
-              <div className="ml-64 flex items-center justify-center h-96">
-                <h1 className="text-white text-4xl">Subscription Management - Coming Soon</h1>
-              </div>
-            </div>
-          } />
-          <Route path="/admin/billing" element={
-            <div className="min-h-screen bg-gray-900">
-              <AdminSidebar activePage="billing" />
-              <AdminHeader activePage="billing" />
-              <div className="ml-64 flex items-center justify-center h-96">
-                <h1 className="text-white text-4xl">Billing Management - Coming Soon</h1>
               </div>
             </div>
           } />
@@ -831,7 +813,7 @@ function App() {
             <div className="min-h-screen bg-gray-900">
               <AdminSidebar activePage="scraper-manager" />
               <AdminHeader activePage="scraper manager" />
-              <div className="ml-64">
+              <div className="md:ml-64 pt-16 md:pt-0">
                 <ScraperManagement />
               </div>
             </div>
@@ -840,26 +822,8 @@ function App() {
             <div className="min-h-screen bg-gray-900">
               <AdminSidebar activePage="reports" />
               <AdminHeader activePage="reports" />
-              <div className="ml-64 flex items-center justify-center h-96">
-                <h1 className="text-white text-4xl">Admin Reports - Coming Soon</h1>
-              </div>
-            </div>
-          } />
-          <Route path="/admin/analytics" element={
-            <div className="min-h-screen bg-gray-900">
-              <AdminSidebar activePage="analytics" />
-              <AdminHeader activePage="analytics" />
-              <div className="ml-64 flex items-center justify-center h-96">
-                <h1 className="text-white text-4xl">Analytics Dashboard - Coming Soon</h1>
-              </div>
-            </div>
-          } />
-          <Route path="/admin/settings" element={
-            <div className="min-h-screen bg-gray-900">
-              <AdminSidebar activePage="settings" />
-              <AdminHeader activePage="settings" />
-              <div className="ml-64 flex items-center justify-center h-96">
-                <h1 className="text-white text-4xl">Admin Settings - Coming Soon</h1>
+              <div className="md:ml-64 pt-16 md:pt-0 flex items-center justify-center h-96">
+                <h1 className="text-white text-2xl md:text-4xl">Admin Reports - Coming Soon</h1>
               </div>
             </div>
           } />
