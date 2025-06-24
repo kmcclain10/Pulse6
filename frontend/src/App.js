@@ -800,30 +800,27 @@ function App() {
           <Route path="/repair-shops" element={<ServiceRepairPage />} />
 
           {/* Dealer Portal Pages */}
-          <Route path="/dealer-portal" element={<DealerInventoryPage />} />
-          <Route path="/dealer-leads" element={
+          <Route path="/dealer-portal" element={
             <div className="min-h-screen bg-gray-900">
-              <DealerSidebar activePage="leads" />
-              <DealerHeader activePage="leads" />
-              <div className="ml-64">
-                <LeadsManagement />
+              <DealerSidebar activePage="inventory" />
+              <div className="md:ml-64 pt-16 md:pt-0 p-4 md:p-6">
+                <h2 className="text-2xl font-bold text-white mb-4">Vehicle Inventory Management</h2>
+                <p className="text-gray-400">Manage your dealership's vehicle inventory and listings.</p>
               </div>
             </div>
           } />
-          <Route path="/dealer-reports" element={
+          <Route path="/dealer-leads" element={
             <div className="min-h-screen bg-gray-900">
-              <DealerSidebar activePage="reports" />
-              <DealerHeader activePage="reports" />
-              <div className="ml-64 flex items-center justify-center h-96">
-                <h1 className="text-white text-4xl">Dealer Reports - Coming Soon</h1>
+              <DealerSidebar activePage="leads" />
+              <div className="md:ml-64 pt-16 md:pt-0">
+                <LeadsManagement />
               </div>
             </div>
           } />
           <Route path="/dealer-tools" element={
             <div className="min-h-screen bg-gray-900">
               <DealerSidebar activePage="desking-tool" />
-              <DealerHeader activePage="desking tool" />
-              <div className="ml-64 py-8">
+              <div className="md:ml-64 pt-16 md:pt-0 py-8">
                 <DeskingTool />
               </div>
             </div>
@@ -831,18 +828,8 @@ function App() {
           <Route path="/credit-application" element={
             <div className="min-h-screen bg-gray-900">
               <DealerSidebar activePage="credit-apps" />
-              <DealerHeader activePage="credit applications" />
-              <div className="ml-64 py-8">
+              <div className="md:ml-64 pt-16 md:pt-0 py-8">
                 <CreditApplication />
-              </div>
-            </div>
-          } />
-          <Route path="/dealer-settings" element={
-            <div className="min-h-screen bg-gray-900">
-              <DealerSidebar activePage="settings" />
-              <DealerHeader activePage="settings" />
-              <div className="ml-64 flex items-center justify-center h-96">
-                <h1 className="text-white text-4xl">Dealer Settings - Coming Soon</h1>
               </div>
             </div>
           } />
