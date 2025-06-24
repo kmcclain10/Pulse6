@@ -674,7 +674,17 @@ async def search_vehicles(
     skip = (page - 1) * limit
 
     vehicles = await db.vehicles.find(query).skip(skip).limit(limit).to_list(limit)
-    return [Vehicle(**vehicle) for vehicle in vehicles]
+    
+    # Fix missing dealer_id field for scraped vehicles
+    processed_vehicles = []
+    for vehicle in vehicles:
+        if "_id" in vehicle:
+            del vehicle["_id"]  # Remove MongoDB ObjectId
+        if "dealer_id" not in vehicle:
+            vehicle["dealer_id"] = vehicle.get("dealer_name", "unknown")
+        processed_vehicles.append(Vehicle(**vehicle))
+    
+    return processed_vehicles
 
 @customer_router.get("/vehicles/{vehicle_id}", response_model=Vehicle)
 async def get_vehicle(vehicle_id: str):
